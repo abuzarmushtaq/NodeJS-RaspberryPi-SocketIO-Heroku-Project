@@ -3,7 +3,7 @@ var socket = require("socket.io-client")(config.server_url);
 var gpio = require("rpi-gpio");
 
 process.on("SIGINT", function(){
-  gpio.write(config.led, 1, function(){
+  gpio.write(config.led, true, function(){
     gpio.destroy(function(){
       process.exit();
     });
@@ -11,7 +11,7 @@ process.on("SIGINT", function(){
 });
 
 gpio.setup(config.led, gpio.DIR_OUT, function(){
-  gpio.write(config.led, 1); // turns led off
+  gpio.write(config.led, true); // turns led off
 });
 
 socket.on("connect", function(){
